@@ -27,6 +27,7 @@ const formSchema = z.object({
   icon: z.string().optional(),
   description: z.string().optional(),
   enabled: z.boolean().default(true),
+  private: z.boolean().default(false),
 })
 
 interface AddItemFormProps {
@@ -45,6 +46,7 @@ export function AddItemForm({ onSubmit, onCancel, defaultValues }: AddItemFormPr
       icon: "",
       description: "",
       enabled: true,
+      private: false,
     }
   })
 
@@ -61,7 +63,8 @@ export function AddItemForm({ onSubmit, onCancel, defaultValues }: AddItemFormPr
             href: data.href,
             description: data.description,
             icon: data.icon,
-            enabled: data.enabled
+            enabled: data.enabled,
+            private: data.private
           }
           await onSubmit(values)
         } catch (error) {
@@ -221,6 +224,28 @@ export function AddItemForm({ onSubmit, onCancel, defaultValues }: AddItemFormPr
                 </FormLabel>
                 <FormDescription>
                   设置该导航项是否启用
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="private"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">
+                  私密模式
+                </FormLabel>
+                <FormDescription>
+                  开启后仅管理员可见此导航项
                 </FormDescription>
               </div>
               <FormControl>

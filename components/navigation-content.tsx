@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useSession } from 'next-auth/react'
 import type { NavigationData } from '@/types/navigation'
 import type { SiteConfig } from '@/types/site'
 import { NavigationCard } from '@/components/navigation-card'
@@ -20,20 +21,43 @@ interface NavigationContentProps {
 }
 
 export function NavigationContent({ navigationData, siteData }: NavigationContentProps) {
+  const { data: session } = useSession()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // 过滤私密项目的函数
+  const filterPrivateItems = useMemo(() => {
+    const isLoggedIn = !!session?.user
+    
+    const filteredNavigationData = {
+      ...navigationData,
+      navigationItems: navigationData.navigationItems.map(category => ({
+        ...category,
+        items: (category.items || []).filter(item => !item.private || isLoggedIn),
+        subCategories: (category.subCategories || []).map(sub => ({
+          ...sub,
+          items: (sub.items || []).filter(item => !item.private || isLoggedIn)
+        }))
+      }))
+    }
+    
+    return filteredNavigationData
+  }, [navigationData, session])
 
   // 修复类型检查
   const searchResults = useMemo(() => {
     const query = searchQuery.toLowerCase().trim()
     if (!query) return []
+    
+    const isLoggedIn = !!session?.user
 
-    return navigationData.navigationItems.map(category => {
+    return filterPrivateItems.navigationItems.map(category => {
       // 搜索主分类下的项目
       const items = (category.items || []).filter(item => {
         const titleMatch = item.title.toLowerCase().includes(query)
         const descMatch = item.description?.toLowerCase().includes(query)
-        return titleMatch || descMatch
+        const isVisible = !item.private || isLoggedIn
+        return (titleMatch || descMatch) && isVisible
       })
 
       // 搜索子分类下的项目
@@ -41,7 +65,8 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
         const subItems = (sub.items || []).filter(item => {
           const titleMatch = item.title.toLowerCase().includes(query)
           const descMatch = item.description?.toLowerCase().includes(query)
-          return titleMatch || descMatch
+          const isVisible = !item.private || isLoggedIn
+          return (titleMatch || descMatch) && isVisible
         })
         return { ...sub, items: subItems }
       }).filter(sub => sub.items.length > 0)
@@ -52,7 +77,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
         subCategories: subResults
       }
     }).filter(result => result.items.length > 0 || result.subCategories.length > 0)
-  }, [navigationData, searchQuery])
+  }, [filterPrivateItems, searchQuery, session])
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
@@ -62,7 +87,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
     <div className="flex flex-col sm:flex-row min-h-screen">
       <div className="hidden sm:block">
         <Sidebar
-          navigationData={navigationData}
+          navigationData={filterPrivateItems}
           siteInfo={siteData}
           className="sticky top-0 h-screen"
         />
@@ -77,7 +102,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
           isSidebarOpen ? "translate-x-0" : "translate-x-full sm:-translate-x-full"
         )}>
           <Sidebar
-            navigationData={navigationData}
+            navigationData={filterPrivateItems}
             siteInfo={siteData}
             onClose={() => setIsSidebarOpen(false)}
           />
@@ -89,7 +114,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
           <div className="flex items-center gap-3">
             <div className="flex-1">
               <SearchBar
-                navigationData={navigationData}
+                navigationData={filterPrivateItems}
                 onSearch={handleSearch}
                 searchResults={searchResults}
                 searchQuery={searchQuery}
@@ -139,7 +164,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
 
         <div className="px-3 sm:px-6 py-3 sm:py-6">
           <div className="space-y-6">
-            {navigationData.navigationItems.map((category) => (
+            {filterPrivateItems.navigationItems.map((category) => (
               <section key={category.id} id={category.id} className="scroll-m-16">
                 <div className="space-y-4">
                   <h2 className="text-base font-medium tracking-tight">

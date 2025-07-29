@@ -5,6 +5,7 @@ export interface NavigationSubItem {
   description?: string
   icon?: string
   enabled: boolean
+  private?: boolean
 }
 
 export interface NavigationCategory {
