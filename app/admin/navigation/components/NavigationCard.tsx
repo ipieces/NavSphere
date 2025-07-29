@@ -61,6 +61,7 @@ export function NavigationCard({
     description?: string; 
     icon: string;
     enabled: boolean;
+    private?: boolean;
   }) => {
     try {
       const response = await fetch(`/api/navigation/${item.id}`, {
@@ -71,7 +72,8 @@ export function NavigationCard({
           title: values.title,
           description: values.description,
           icon: values.icon,
-          enabled: values.enabled
+          enabled: values.enabled,
+          private: values.private
         })
       })
 
