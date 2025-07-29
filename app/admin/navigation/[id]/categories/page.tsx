@@ -88,7 +88,8 @@ export default function CategoriesPage() {
     title: string, 
     icon: string, 
     description?: string,
-    enabled: boolean 
+    enabled: boolean,
+    private?: boolean
   }) => {
     if (!params?.id || !navigation) return
 
@@ -99,6 +100,7 @@ export default function CategoriesPage() {
         icon: values.icon,
         description: values.description,
         enabled: values.enabled,
+        private: values.private ?? false,
         items: []
       }
 

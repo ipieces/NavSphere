@@ -43,7 +43,8 @@ export default function NavigationPage() {
     title: string; 
     icon: string; 
     description?: string;
-    enabled?: boolean 
+    enabled?: boolean;
+    private?: boolean;
   }) => {
     try {
       // 生成唯一ID
@@ -53,6 +54,7 @@ export default function NavigationPage() {
         icon: values.icon,
         description: values.description || '',
         enabled: values.enabled ?? true,
+        private: values.private ?? false,
         items: [],
         subCategories: []
       }
