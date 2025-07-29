@@ -15,7 +15,12 @@ const config = {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      const githubUsername = profile?.login || user?.name
+      // 确保获取正确的GitHub用户名，并进行类型检查
+      const githubUsername = typeof profile?.login === 'string' 
+        ? profile.login 
+        : typeof user?.name === 'string' 
+          ? user.name 
+          : null
       
       if (!isAdminUser(githubUsername)) {
         console.log(`拒绝用户登录: ${githubUsername} (不在管理员列表中)`)
@@ -29,8 +34,8 @@ const config = {
       if (account?.access_token) {
         token.accessToken = account.access_token
       }
-      // 添加用户信息到token
-      if (profile?.login) {
+      // 添加用户信息到token，确保类型安全
+      if (typeof profile?.login === 'string') {
         token.githubUsername = profile.login
       }
       return token
