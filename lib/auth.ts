@@ -1,15 +1,18 @@
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import type { DefaultSession, NextAuthConfig } from 'next-auth'
+import { isAdminUser } from './admin-users'
 
 declare module 'next-auth' {
   interface Session {
     user: {
       accessToken?: string
+      githubUsername?: string
     } & DefaultSession['user']
   }
   interface JWT {
     accessToken?: string
+    githubUsername?: string
   }
   interface User {
     accessToken?: string
@@ -27,15 +30,32 @@ const config = {
     })
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async signIn({ user, account, profile }) {
+      const githubUsername = profile?.login || user?.name
+      
+      if (!isAdminUser(githubUsername)) {
+        console.log(`拒绝用户登录: ${githubUsername} (不在管理员列表中)`)
+        return false // 拒绝登录
+      }
+      
+      console.log(`允许管理员用户登录: ${githubUsername}`)
+      return true
+    },
+    async jwt({ token, account, profile }) {
       if (account?.access_token) {
         token.accessToken = account.access_token
+      }
+      // 添加用户信息到token
+      if (profile?.login) {
+        token.githubUsername = profile.login
       }
       return token
     },
     async session({ session, token }) {
       if (session?.user) {
         session.user.accessToken = token.accessToken as string
+        // 添加GitHub用户名到session
+        session.user.githubUsername = token.githubUsername as string
       }
       return session
     }
