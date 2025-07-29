@@ -1,14 +1,5 @@
 import type { NextAuthConfig } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
-import type { DefaultSession, JWT } from 'next-auth'
-
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      accessToken?: string
-    } & DefaultSession['user']
-  }
-}
 
 export const authConfig: NextAuthConfig = {
   providers: [

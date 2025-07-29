@@ -1,23 +1,7 @@
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
-import type { DefaultSession, NextAuthConfig } from 'next-auth'
+import type { NextAuthConfig } from 'next-auth'
 import { isAdminUser } from './admin-users'
-
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      accessToken?: string
-      githubUsername?: string
-    } & DefaultSession['user']
-  }
-  interface JWT {
-    accessToken?: string
-    githubUsername?: string
-  }
-  interface User {
-    accessToken?: string
-  }
-}
 
 const config = {
   providers: [
