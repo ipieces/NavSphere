@@ -16,6 +16,7 @@ export interface NavigationCategory {
   parentId?: string
   items?: NavigationSubItem[]
   enabled?: boolean
+  private?: boolean
 }
 
 export interface NavigationItem {
@@ -26,6 +27,7 @@ export interface NavigationItem {
   items?: NavigationSubItem[]
   subCategories?: NavigationCategory[]
   enabled?: boolean
+  private?: boolean
 }
 
 export interface NavigationData {

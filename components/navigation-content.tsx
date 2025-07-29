@@ -31,14 +31,18 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
     
     const filteredNavigationData = {
       ...navigationData,
-      navigationItems: navigationData.navigationItems.map(category => ({
-        ...category,
-        items: (category.items || []).filter(item => !item.private || isLoggedIn),
-        subCategories: (category.subCategories || []).map(sub => ({
-          ...sub,
-          items: (sub.items || []).filter(item => !item.private || isLoggedIn)
+      navigationItems: navigationData.navigationItems
+        .filter(category => !category.private || isLoggedIn) // 过滤主分类
+        .map(category => ({
+          ...category,
+          items: (category.items || []).filter(item => !item.private || isLoggedIn),
+          subCategories: (category.subCategories || [])
+            .filter(sub => !sub.private || isLoggedIn) // 过滤子分类
+            .map(sub => ({
+              ...sub,
+              items: (sub.items || []).filter(item => !item.private || isLoggedIn)
+            }))
         }))
-      }))
     }
     
     return filteredNavigationData

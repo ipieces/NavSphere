@@ -15,7 +15,8 @@ const formSchema = z.object({
   title: z.string().min(1, "标题不能为空"),
   description: z.string().optional(),
   icon: z.string().min(1, "请选择图标"),
-  enabled: z.boolean().default(true)
+  enabled: z.boolean().default(true),
+  private: z.boolean().default(false)
 })
 
 interface AddCategoryFormProps {
@@ -24,6 +25,7 @@ interface AddCategoryFormProps {
     description?: string
     icon: string
     enabled: boolean
+    private?: boolean
   }
   onSubmit: (values: z.infer<typeof formSchema>) => Promise<void>
   onCancel: () => void
@@ -37,7 +39,8 @@ export function AddCategoryForm({ defaultValues, onSubmit, onCancel }: AddCatego
       title: "",
       description: "",
       icon: "",
-      enabled: true
+      enabled: true,
+      private: false
     }
   })
 
@@ -133,6 +136,29 @@ export function AddCategoryForm({ defaultValues, onSubmit, onCancel }: AddCatego
                 </FormLabel>
                 <FormDescription>
                   控制该分类是否在导航中显示
+                </FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="private"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel>
+                  私密模式
+                </FormLabel>
+                <FormDescription>
+                  开启后仅管理员可见此分类
                 </FormDescription>
               </div>
             </FormItem>

@@ -24,7 +24,8 @@ const formSchema = z.object({
   title: z.string().min(2, { message: "标题至少需要2个字符" }),
   icon: z.string().min(1, { message: "请选择图标" }),
   description: z.string().optional(),
-  enabled: z.boolean().default(true)
+  enabled: z.boolean().default(true),
+  private: z.boolean().default(false)
 })
 
 interface AddNavigationFormProps {
@@ -33,12 +34,14 @@ interface AddNavigationFormProps {
     icon: string; 
     description?: string;
     enabled: boolean;
+    private?: boolean;
   }) => void
   defaultValues?: {
     title: string
     icon: string
     description?: string
     enabled: boolean
+    private?: boolean
   }
   onCancel?: () => void
 }
@@ -55,7 +58,8 @@ export function AddNavigationForm({
       title: "",
       icon: "FolderKanban",
       description: "",
-      enabled: true
+      enabled: true,
+      private: false
     }
   })
 
@@ -67,7 +71,8 @@ export function AddNavigationForm({
         title: values.title,
         icon: values.icon,
         description: values.description,
-        enabled: values.enabled
+        enabled: values.enabled,
+        private: values.private
       })
       
       toast({
@@ -145,6 +150,26 @@ export function AddNavigationForm({
                 <FormLabel className="text-base">启用状态</FormLabel>
                 <FormDescription>
                   设置该项是否启用
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="private"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">私密模式</FormLabel>
+                <FormDescription>
+                  开启后仅管理员可见此导航项
                 </FormDescription>
               </div>
               <FormControl>
