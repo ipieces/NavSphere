@@ -244,7 +244,8 @@ export function NavigationCard({
                   title: item.title,
                   description: item.description || '',
                   icon: item.icon || '',
-                  enabled: true
+                  enabled: item.enabled ?? true,
+                  private: item.private ?? false
                 }}
                 onSubmit={handleEdit}
                 onCancel={() => setIsEditDialogOpen(false)}

@@ -29,10 +29,19 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
   const filterPrivateItems = useMemo(() => {
     const isLoggedIn = !!session?.user
     
+    // 调试日志
+    console.log('Navigation Content - Session:', session)
+    console.log('Navigation Content - Is Logged In:', isLoggedIn)
+    console.log('Navigation Content - Original Data:', navigationData)
+    
     const filteredNavigationData = {
       ...navigationData,
       navigationItems: navigationData.navigationItems
-        .filter(category => !category.private || isLoggedIn) // 过滤主分类
+        .filter(category => {
+          const shouldShow = !category.private || isLoggedIn
+          console.log(`Category "${category.title}" - private: ${category.private}, shouldShow: ${shouldShow}`)
+          return shouldShow
+        })
         .map(category => ({
           ...category,
           items: (category.items || []).filter(item => !item.private || isLoggedIn),
@@ -45,6 +54,7 @@ export function NavigationContent({ navigationData, siteData }: NavigationConten
         }))
     }
     
+    console.log('Navigation Content - Filtered Data:', filteredNavigationData)
     return filteredNavigationData
   }, [navigationData, session])
 
