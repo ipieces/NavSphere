@@ -809,6 +809,15 @@
           ]
         }
       ]
+    },
+    {
+      "id": "1753777160454",
+      "title": "Geetest",
+      "icon": "Folder",
+      "description": "",
+      "enabled": true,
+      "items": [],
+      "subCategories": []
     }
   ]
 }
