@@ -590,14 +590,6 @@
       "items": [],
       "subCategories": [
         {
-          "id": "2d33f756-959e-4171-9e0e-b616bcd274be",
-          "title": "公众号排版",
-          "icon": "Edit",
-          "description": "",
-          "enabled": true,
-          "items": []
-        },
-        {
           "id": "e2b07afd-968c-4985-b6c2-8dc504bce17b",
           "title": "录屏工具",
           "icon": "Folder",
