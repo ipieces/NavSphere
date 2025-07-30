@@ -62,6 +62,14 @@
           "description": "",
           "icon": "",
           "enabled": true
+        },
+        {
+          "id": "site_1753842866816_xfwwoieb8",
+          "title": "gitlab",
+          "href": "https://git.gtapp.xyz",
+          "description": "",
+          "icon": "",
+          "enabled": true
         }
       ],
       "subCategories": [],
