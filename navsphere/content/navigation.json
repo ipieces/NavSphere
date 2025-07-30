@@ -768,7 +768,16 @@
           "description": "IP属性，IP风险",
           "enabled": true,
           "private": false,
-          "items": []
+          "items": [
+            {
+              "id": "site_1753843066081_gwykgoz9f",
+              "title": "本机IP检查",
+              "href": "https://ipcheck.ing/#/",
+              "description": "",
+              "icon": "",
+              "enabled": true
+            }
+          ]
         }
       ]
     }
