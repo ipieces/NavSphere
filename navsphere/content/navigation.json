@@ -751,6 +751,16 @@
           ]
         }
       ]
+    },
+    {
+      "id": "1753842998780",
+      "title": "安全",
+      "icon": "Folder",
+      "description": "收录安全相关站点",
+      "enabled": true,
+      "private": false,
+      "items": [],
+      "subCategories": []
     }
   ]
 }
