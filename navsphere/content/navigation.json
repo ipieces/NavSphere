@@ -603,16 +603,7 @@
           "icon": "Edit",
           "description": "",
           "enabled": true,
-          "items": [
-            {
-              "id": "1737961258110",
-              "title": "mdnice",
-              "href": "https://editor.mdnice.com/",
-              "description": "微信公众号样式一键转换，知乎/语雀专属排版优化",
-              "icon": "/assets/img_1737961266055.png",
-              "enabled": true
-            }
-          ]
+          "items": []
         },
         {
           "id": "e2b07afd-968c-4985-b6c2-8dc504bce17b",
