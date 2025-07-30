@@ -595,16 +595,7 @@
           "icon": "FileText",
           "description": "",
           "enabled": true,
-          "items": [
-            {
-              "id": "1736912680039",
-              "title": "小红书创作中心",
-              "href": "https://creator.xiaohongshu.com/",
-              "description": "小红书创作中心",
-              "icon": "/assets/img_1736912766835.png",
-              "enabled": true
-            }
-          ]
+          "items": []
         },
         {
           "id": "2d33f756-959e-4171-9e0e-b616bcd274be",
