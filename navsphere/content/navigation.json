@@ -1,6 +1,25 @@
 {
   "navigationItems": [
     {
+      "id": "1753777160454",
+      "title": "Geetest",
+      "icon": "Folder",
+      "description": "",
+      "enabled": true,
+      "items": [
+        {
+          "id": "1_2",
+          "title": "Vercel",
+          "href": "https://vercel.com/",
+          "description": "Vercel 提供开发者工具和云基础设施，帮助构建、扩展和保护更快、更个性化的网络应用。",
+          "icon": "/assets/images/logos/vercel.png",
+          "enabled": true
+        }
+      ],
+      "subCategories": [],
+      "private": true
+    },
+    {
       "id": "1",
       "title": "常用推荐",
       "icon": "Star",
@@ -801,25 +820,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": "1753777160454",
-      "title": "Geetest",
-      "icon": "Folder",
-      "description": "",
-      "enabled": true,
-      "items": [
-        {
-          "id": "1_2",
-          "title": "Vercel",
-          "href": "https://vercel.com/",
-          "description": "Vercel 提供开发者工具和云基础设施，帮助构建、扩展和保护更快、更个性化的网络应用。",
-          "icon": "/assets/images/logos/vercel.png",
-          "enabled": true
-        }
-      ],
-      "subCategories": [],
-      "private": true
     }
   ]
 }
