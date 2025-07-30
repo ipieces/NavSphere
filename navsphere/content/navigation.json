@@ -38,6 +38,14 @@
           "description": "",
           "icon": "",
           "enabled": true
+        },
+        {
+          "id": "site_1753841701818_y9me0x4mi",
+          "title": "GTM",
+          "href": "https://gtmanager.gtapp.xyz/",
+          "description": "",
+          "icon": "",
+          "enabled": true
         }
       ],
       "subCategories": [],
