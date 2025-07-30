@@ -46,6 +46,14 @@
           "description": "",
           "icon": "",
           "enabled": true
+        },
+        {
+          "id": "site_1753841723872_9zelu6pks",
+          "title": "redash",
+          "href": "https://redash.gtapp.xyz/",
+          "description": "",
+          "icon": "",
+          "enabled": true
         }
       ],
       "subCategories": [],
