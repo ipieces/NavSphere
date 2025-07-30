@@ -760,7 +760,17 @@
       "enabled": true,
       "private": false,
       "items": [],
-      "subCategories": []
+      "subCategories": [
+        {
+          "id": "398b5c92-60fe-4031-a334-8941aa5eca12",
+          "title": "关于IP",
+          "icon": "Database",
+          "description": "IP属性，IP风险",
+          "enabled": true,
+          "private": false,
+          "items": []
+        }
+      ]
     }
   ]
 }
