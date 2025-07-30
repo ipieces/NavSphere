@@ -22,6 +22,14 @@
           "description": "",
           "icon": "",
           "enabled": true
+        },
+        {
+          "id": "site_1753841648893_69o8odvnh",
+          "title": "火山云",
+          "href": "https://console.volcengine.com/auth/login/user/2100082923",
+          "description": "",
+          "icon": "",
+          "enabled": true
         }
       ],
       "subCategories": [],
