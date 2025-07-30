@@ -763,9 +763,9 @@
       "subCategories": [
         {
           "id": "398b5c92-60fe-4031-a334-8941aa5eca12",
-          "title": "关于IP",
+          "title": "在线测试",
           "icon": "Database",
-          "description": "IP属性，IP风险",
+          "description": "IP属性，IP风险，指纹跟踪能力等",
           "enabled": true,
           "private": false,
           "items": [
