@@ -54,6 +54,14 @@
           "description": "",
           "icon": "",
           "enabled": true
+        },
+        {
+          "id": "site_1753841775949_ywetlctsa",
+          "title": "易名中国",
+          "href": "https://www.ename.cn/",
+          "description": "",
+          "icon": "",
+          "enabled": true
         }
       ],
       "subCategories": [],
