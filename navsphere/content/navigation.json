@@ -8,14 +8,6 @@
       "enabled": true,
       "items": [
         {
-          "id": "1_2",
-          "title": "Vercel",
-          "href": "https://vercel.com/",
-          "description": "Vercel 提供开发者工具和云基础设施，帮助构建、扩展和保护更快、更个性化的网络应用。",
-          "icon": "/assets/images/logos/vercel.png",
-          "enabled": true
-        },
-        {
           "id": "site_1753841624784_aaknalurw",
           "title": "阿里云",
           "href": "https://signin.aliyun.com/login.htm#/main",
