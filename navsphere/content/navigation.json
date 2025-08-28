@@ -150,7 +150,16 @@
       "id": "9",
       "title": "AI工具包",
       "icon": "Brain",
-      "items": [],
+      "items": [
+        {
+          "id": "site_1756398468482_e977ugwfq",
+          "title": "LearningAbout",
+          "href": "https://learning.google.com/experiments/learn-about",
+          "description": "",
+          "icon": "",
+          "enabled": true
+        }
+      ],
       "subCategories": [
         {
           "id": "cbb3e33d-408b-41ba-9e9a-e0444303e3fd",
